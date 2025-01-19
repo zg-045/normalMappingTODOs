@@ -1890,6 +1890,7 @@ class Sea extends Object3D {
 		this.texCoordLoc = gl.getAttribLocation(this.shader, "vTexCoord");
 		this.diffuseMapLoc = gl.getUniformLocation(this.shader, "diffuseMap");
 		// TODO 1.3: Hole Speicheradresse der Normal-Map-Shadervariable.
+		this.normalMapLoc = gl.getUniformLocation(this.shader, "normalMap");
 
 
 		for(let i = -10; i < 10; i += 0.5) {
@@ -1916,6 +1917,10 @@ class Sea extends Object3D {
 		handleTexture(waterImage, this.diffuseTexture);
 		
 		// TODO 1.1: Erstelle analog zu diffuser Textur eine Normal Map für das Meer.
+		this.normalTexture = gl.createTexture();
+		let normalImage = await loadImage("water_normal.jpg");
+		handleTexture(normalImage, this.normalTexture);
+
 
 
 		this.InitBuffers();
@@ -1940,6 +1945,9 @@ class Sea extends Object3D {
 		gl.uniform1i(this.diffuseMapLoc, 0);
 
 		// TODO 1.4: Verknüpfe Normal Map analog zu diffuser Map mit Shader.
+		gl.activeTexture(gl.TEXTURE0);
+		gl.bindTexture(gl.TEXTURE_2D, this.normalTexture);
+		gl.uniform1i(this.normalMapLoc, 0);
 
 
 		// Render
