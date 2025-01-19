@@ -2,6 +2,8 @@ let gl;
 let defaultProgram,
 	waterProgram;
 
+	//test
+
 let objects = [];
 
 let viewMatrix,
