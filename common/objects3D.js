@@ -1945,9 +1945,9 @@ class Sea extends Object3D {
 		gl.uniform1i(this.diffuseMapLoc, 0);
 
 		// TODO 1.4: Verknüpfe Normal Map analog zu diffuser Map mit Shader.
-		gl.activeTexture(gl.TEXTURE0);
+		gl.activeTexture(gl.TEXTURE1);
 		gl.bindTexture(gl.TEXTURE_2D, this.normalTexture);
-		gl.uniform1i(this.normalMapLoc, 0);
+		gl.uniform1i(this.normalMapLoc, 1);
 
 
 		// Render
